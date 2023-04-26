@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "bce88ae6-b214-43a3-9f59-1e6dfb2e7891",
+		"name": "RavenDB-Playground",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Author",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"David\",\r\n    \"email\": \"david@aqui.pt\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}author/create",
+					"host": [
+						"{{host}}author"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Idea",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authorId\": \"authors/1-A\",\r\n    \"subject\": \"New idea!\",\r\n    \"text\": \"The best idea ever...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}idea/create",
+					"host": [
+						"{{host}}idea"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityId\": \"ideas/1-A\",\r\n    \"authorId\": \"authors/1-A\",\r\n    \"text\": \"Second comment :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}comment/create",
+					"host": [
+						"{{host}}comment"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Comments By EntityId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityId\": \"ideas/1-A\",\r\n    \"authorId\": \"authors/1-A\",\r\n    \"text\": \"Second comment :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}comment/list?entityId=ideas/1-A",
+					"host": [
+						"{{host}}comment"
+					],
+					"path": [
+						"list"
+					],
+					"query": [
+						{
+							"key": "entityId",
+							"value": "ideas/1-A"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Unseen Comments By EntityId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityId\": \"ideas/1-A\",\r\n    \"authorId\": \"authors/1-A\",\r\n    \"text\": \"Second comment :)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}comment/listunseen?entityId=ideas/1-A",
+					"host": [
+						"{{host}}comment"
+					],
+					"path": [
+						"listunseen"
+					],
+					"query": [
+						{
+							"key": "entityId",
+							"value": "ideas/1-A"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:19094/",
+			"type": "default"
+		}
+	]
+}
